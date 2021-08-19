@@ -1,0 +1,16 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: excel-demo
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://localhost:3306/xfcmedia?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+    druid:
+      max-wait: 600000
+mybatis:
+  #type-aliases-package:  # 所有Entity别名类所在包
+  mapper-locations: classpath:mybatis/*.xml

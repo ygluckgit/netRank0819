@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfc.netrank0819.database.ArticlMessageMapper">
+  <resultMap id="BaseResultMap" type="com.xfc.netrank0819.domain.ArticlMessageDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="offical_account" jdbcType="VARCHAR" property="officalAccount" />
+    <result column="account_name" jdbcType="VARCHAR" property="accountName" />
+    <result column="articl_sum" jdbcType="BIGINT" property="articlSum" />
+    <result column="articl_add_sum" jdbcType="BIGINT" property="articlAddSum" />
+    <result column="more_tenw" jdbcType="BIGINT" property="moreTenw" />
+    <result column="more_tenw_add" jdbcType="BIGINT" property="moreTenwAdd" />
+    <result column="read_sum" jdbcType="BIGINT" property="readSum" />
+    <result column="read_add_sum" jdbcType="BIGINT" property="readAddSum" />
+    <result column="ave_read" jdbcType="BIGINT" property="aveRead" />
+    <result column="ave_read_add" jdbcType="BIGINT" property="aveReadAdd" />
+    <result column="read_now" jdbcType="BIGINT" property="readNow" />
+    <result column="read_now_add" jdbcType="BIGINT" property="readNowAdd" />
+    <result column="ave_read_now" jdbcType="BIGINT" property="aveReadNow" />
+    <result column="ave_read_now_add" jdbcType="BIGINT" property="aveReadNowAdd" />
+    <result column="replay_sum" jdbcType="BIGINT" property="replaySum" />
+    <result column="replay_add_sum" jdbcType="BIGINT" property="replayAddSum" />
+    <result column="headline_read_sum" jdbcType="BIGINT" property="headlineReadSum" />
+    <result column="headline_read_sum_add" jdbcType="BIGINT" property="headlineReadSumAdd" />
+    <result column="headline_read_now" jdbcType="BIGINT" property="headlineReadNow" />
+    <result column="largest_read" jdbcType="BIGINT" property="largestRead" />
+    <result column="largest_read_now" jdbcType="BIGINT" property="largestReadNow" />
+    <result column="readed_pro" jdbcType="VARCHAR" property="readedPro" />
+    <result column="like_sum" jdbcType="BIGINT" property="likeSum" />
+    <result column="like_add_sum" jdbcType="BIGINT" property="likeAddSum" />
+    <result column="largest_like_sum" jdbcType="BIGINT" property="largestLikeSum" />
+    <result column="headline_like_sum" jdbcType="BIGINT" property="headlineLikeSum" />
+    <result column="ave_like_sum" jdbcType="BIGINT" property="aveLikeSum" />
+    <result column="ave_like_add_sum" jdbcType="DOUBLE" property="aveLikeAddSum" />
+    <result column="wci" jdbcType="DOUBLE" property="wci" />
+    <result column="wci_add" jdbcType="BIGINT" property="wciAdd" />
+    <result column="rank" jdbcType="BIGINT" property="rank" />
+    <result column="rank_add" jdbcType="BIGINT" property="rankAdd" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, offical_account, account_name, articl_sum, articl_add_sum, more_tenw, more_tenw_add, 
+    read_sum, read_add_sum, ave_read, ave_read_add, read_now, read_now_add, ave_read_now, 
+    ave_read_now_add, replay_sum, replay_add_sum, headline_read_sum, headline_read_sum_add, 
+    headline_read_now, largest_read, largest_read_now, readed_pro, like_sum, like_add_sum, 
+    largest_like_sum, headline_like_sum, ave_like_sum, ave_like_add_sum, wci, wci_add, 
+    `rank`, rank_add, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from articlmessage
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectList" resultType="com.xfc.netrank0819.domain.ArticlMessageDO">
+
+    select
+    <include refid="Base_Column_List" />
+  FROM articlmessage WHERE 1=1 ORDER BY wci desc
+
+
+
+
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from articlmessage
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xfc.netrank0819.domain.ArticlMessageDO" useGeneratedKeys="true">
+    insert into articlmessage (offical_account, account_name, articl_sum, 
+      articl_add_sum, more_tenw, more_tenw_add, 
+      read_sum, read_add_sum, ave_read, 
+      ave_read_add, read_now, read_now_add, 
+      ave_read_now, ave_read_now_add, replay_sum, 
+      replay_add_sum, headline_read_sum, headline_read_sum_add, 
+      headline_read_now, largest_read, largest_read_now, 
+      readed_pro, like_sum, like_add_sum, 
+      largest_like_sum, headline_like_sum, ave_like_sum, 
+      ave_like_add_sum, wci, wci_add, 
+      `rank`, rank_add, is_delete
+      )
+    values (#{officalAccount,jdbcType=VARCHAR}, #{accountName,jdbcType=VARCHAR}, #{articlSum,jdbcType=BIGINT}, 
+      #{articlAddSum,jdbcType=BIGINT}, #{moreTenw,jdbcType=BIGINT}, #{moreTenwAdd,jdbcType=BIGINT}, 
+      #{readSum,jdbcType=BIGINT}, #{readAddSum,jdbcType=BIGINT}, #{aveRead,jdbcType=BIGINT}, 
+      #{aveReadAdd,jdbcType=BIGINT}, #{readNow,jdbcType=BIGINT}, #{readNowAdd,jdbcType=BIGINT}, 
+      #{aveReadNow,jdbcType=BIGINT}, #{aveReadNowAdd,jdbcType=BIGINT}, #{replaySum,jdbcType=BIGINT}, 
+      #{replayAddSum,jdbcType=BIGINT}, #{headlineReadSum,jdbcType=BIGINT}, #{headlineReadSumAdd,jdbcType=BIGINT}, 
+      #{headlineReadNow,jdbcType=BIGINT}, #{largestRead,jdbcType=BIGINT}, #{largestReadNow,jdbcType=BIGINT}, 
+      #{readedPro,jdbcType=VARCHAR}, #{likeSum,jdbcType=BIGINT}, #{likeAddSum,jdbcType=BIGINT}, 
+      #{largestLikeSum,jdbcType=BIGINT}, #{headlineLikeSum,jdbcType=BIGINT}, #{aveLikeSum,jdbcType=BIGINT}, 
+      #{aveLikeAddSum,jdbcType=DOUBLE}, #{wci,jdbcType=DOUBLE}, #{wciAdd,jdbcType=BIGINT}, 
+      #{rank,jdbcType=BIGINT}, #{rankAdd,jdbcType=BIGINT}, #{isDelete,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xfc.netrank0819.domain.ArticlMessageDO" useGeneratedKeys="true">
+    insert into articlmessage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="officalAccount != null">
+        offical_account,
+      </if>
+      <if test="accountName != null">
+        account_name,
+      </if>
+      <if test="articlSum != null">
+        articl_sum,
+      </if>
+      <if test="articlAddSum != null">
+        articl_add_sum,
+      </if>
+      <if test="moreTenw != null">
+        more_tenw,
+      </if>
+      <if test="moreTenwAdd != null">
+        more_tenw_add,
+      </if>
+      <if test="readSum != null">
+        read_sum,
+      </if>
+      <if test="readAddSum != null">
+        read_add_sum,
+      </if>
+      <if test="aveRead != null">
+        ave_read,
+      </if>
+      <if test="aveReadAdd != null">
+        ave_read_add,
+      </if>
+      <if test="readNow != null">
+        read_now,
+      </if>
+      <if test="readNowAdd != null">
+        read_now_add,
+      </if>
+      <if test="aveReadNow != null">
+        ave_read_now,
+      </if>
+      <if test="aveReadNowAdd != null">
+        ave_read_now_add,
+      </if>
+      <if test="replaySum != null">
+        replay_sum,
+      </if>
+      <if test="replayAddSum != null">
+        replay_add_sum,
+      </if>
+      <if test="headlineReadSum != null">
+        headline_read_sum,
+      </if>
+      <if test="headlineReadSumAdd != null">
+        headline_read_sum_add,
+      </if>
+      <if test="headlineReadNow != null">
+        headline_read_now,
+      </if>
+      <if test="largestRead != null">
+        largest_read,
+      </if>
+      <if test="largestReadNow != null">
+        largest_read_now,
+      </if>
+      <if test="readedPro != null">
+        readed_pro,
+      </if>
+      <if test="likeSum != null">
+        like_sum,
+      </if>
+      <if test="likeAddSum != null">
+        like_add_sum,
+      </if>
+      <if test="largestLikeSum != null">
+        largest_like_sum,
+      </if>
+      <if test="headlineLikeSum != null">
+        headline_like_sum,
+      </if>
+      <if test="aveLikeSum != null">
+        ave_like_sum,
+      </if>
+      <if test="aveLikeAddSum != null">
+        ave_like_add_sum,
+      </if>
+      <if test="wci != null">
+        wci,
+      </if>
+      <if test="wciAdd != null">
+        wci_add,
+      </if>
+      <if test="rank != null">
+        `rank`,
+      </if>
+      <if test="rankAdd != null">
+        rank_add,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="officalAccount != null">
+        #{officalAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null">
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="articlSum != null">
+        #{articlSum,jdbcType=BIGINT},
+      </if>
+      <if test="articlAddSum != null">
+        #{articlAddSum,jdbcType=BIGINT},
+      </if>
+      <if test="moreTenw != null">
+        #{moreTenw,jdbcType=BIGINT},
+      </if>
+      <if test="moreTenwAdd != null">
+        #{moreTenwAdd,jdbcType=BIGINT},
+      </if>
+      <if test="readSum != null">
+        #{readSum,jdbcType=BIGINT},
+      </if>
+      <if test="readAddSum != null">
+        #{readAddSum,jdbcType=BIGINT},
+      </if>
+      <if test="aveRead != null">
+        #{aveRead,jdbcType=BIGINT},
+      </if>
+      <if test="aveReadAdd != null">
+        #{aveReadAdd,jdbcType=BIGINT},
+      </if>
+      <if test="readNow != null">
+        #{readNow,jdbcType=BIGINT},
+      </if>
+      <if test="readNowAdd != null">
+        #{readNowAdd,jdbcType=BIGINT},
+      </if>
+      <if test="aveReadNow != null">
+        #{aveReadNow,jdbcType=BIGINT},
+      </if>
+      <if test="aveReadNowAdd != null">
+        #{aveReadNowAdd,jdbcType=BIGINT},
+      </if>
+      <if test="replaySum != null">
+        #{replaySum,jdbcType=BIGINT},
+      </if>
+      <if test="replayAddSum != null">
+        #{replayAddSum,jdbcType=BIGINT},
+      </if>
+      <if test="headlineReadSum != null">
+        #{headlineReadSum,jdbcType=BIGINT},
+      </if>
+      <if test="headlineReadSumAdd != null">
+        #{headlineReadSumAdd,jdbcType=BIGINT},
+      </if>
+      <if test="headlineReadNow != null">
+        #{headlineReadNow,jdbcType=BIGINT},
+      </if>
+      <if test="largestRead != null">
+        #{largestRead,jdbcType=BIGINT},
+      </if>
+      <if test="largestReadNow != null">
+        #{largestReadNow,jdbcType=BIGINT},
+      </if>
+      <if test="readedPro != null">
+        #{readedPro,jdbcType=VARCHAR},
+      </if>
+      <if test="likeSum != null">
+        #{likeSum,jdbcType=BIGINT},
+      </if>
+      <if test="likeAddSum != null">
+        #{likeAddSum,jdbcType=BIGINT},
+      </if>
+      <if test="largestLikeSum != null">
+        #{largestLikeSum,jdbcType=BIGINT},
+      </if>
+      <if test="headlineLikeSum != null">
+        #{headlineLikeSum,jdbcType=BIGINT},
+      </if>
+      <if test="aveLikeSum != null">
+        #{aveLikeSum,jdbcType=BIGINT},
+      </if>
+      <if test="aveLikeAddSum != null">
+        #{aveLikeAddSum,jdbcType=DOUBLE},
+      </if>
+      <if test="wci != null">
+        #{wci,jdbcType=DOUBLE},
+      </if>
+      <if test="wciAdd != null">
+        #{wciAdd,jdbcType=BIGINT},
+      </if>
+      <if test="rank != null">
+        #{rank,jdbcType=BIGINT},
+      </if>
+      <if test="rankAdd != null">
+        #{rankAdd,jdbcType=BIGINT},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xfc.netrank0819.domain.ArticlMessageDO">
+    update articlmessage
+    <set>
+      <if test="officalAccount != null">
+        offical_account = #{officalAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null">
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="articlSum != null">
+        articl_sum = #{articlSum,jdbcType=BIGINT},
+      </if>
+      <if test="articlAddSum != null">
+        articl_add_sum = #{articlAddSum,jdbcType=BIGINT},
+      </if>
+      <if test="moreTenw != null">
+        more_tenw = #{moreTenw,jdbcType=BIGINT},
+      </if>
+      <if test="moreTenwAdd != null">
+        more_tenw_add = #{moreTenwAdd,jdbcType=BIGINT},
+      </if>
+      <if test="readSum != null">
+        read_sum = #{readSum,jdbcType=BIGINT},
+      </if>
+      <if test="readAddSum != null">
+        read_add_sum = #{readAddSum,jdbcType=BIGINT},
+      </if>
+      <if test="aveRead != null">
+        ave_read = #{aveRead,jdbcType=BIGINT},
+      </if>
+      <if test="aveReadAdd != null">
+        ave_read_add = #{aveReadAdd,jdbcType=BIGINT},
+      </if>
+      <if test="readNow != null">
+        read_now = #{readNow,jdbcType=BIGINT},
+      </if>
+      <if test="readNowAdd != null">
+        read_now_add = #{readNowAdd,jdbcType=BIGINT},
+      </if>
+      <if test="aveReadNow != null">
+        ave_read_now = #{aveReadNow,jdbcType=BIGINT},
+      </if>
+      <if test="aveReadNowAdd != null">
+        ave_read_now_add = #{aveReadNowAdd,jdbcType=BIGINT},
+      </if>
+      <if test="replaySum != null">
+        replay_sum = #{replaySum,jdbcType=BIGINT},
+      </if>
+      <if test="replayAddSum != null">
+        replay_add_sum = #{replayAddSum,jdbcType=BIGINT},
+      </if>
+      <if test="headlineReadSum != null">
+        headline_read_sum = #{headlineReadSum,jdbcType=BIGINT},
+      </if>
+      <if test="headlineReadSumAdd != null">
+        headline_read_sum_add = #{headlineReadSumAdd,jdbcType=BIGINT},
+      </if>
+      <if test="headlineReadNow != null">
+        headline_read_now = #{headlineReadNow,jdbcType=BIGINT},
+      </if>
+      <if test="largestRead != null">
+        largest_read = #{largestRead,jdbcType=BIGINT},
+      </if>
+      <if test="largestReadNow != null">
+        largest_read_now = #{largestReadNow,jdbcType=BIGINT},
+      </if>
+      <if test="readedPro != null">
+        readed_pro = #{readedPro,jdbcType=VARCHAR},
+      </if>
+      <if test="likeSum != null">
+        like_sum = #{likeSum,jdbcType=BIGINT},
+      </if>
+      <if test="likeAddSum != null">
+        like_add_sum = #{likeAddSum,jdbcType=BIGINT},
+      </if>
+      <if test="largestLikeSum != null">
+        largest_like_sum = #{largestLikeSum,jdbcType=BIGINT},
+      </if>
+      <if test="headlineLikeSum != null">
+        headline_like_sum = #{headlineLikeSum,jdbcType=BIGINT},
+      </if>
+      <if test="aveLikeSum != null">
+        ave_like_sum = #{aveLikeSum,jdbcType=BIGINT},
+      </if>
+      <if test="aveLikeAddSum != null">
+        ave_like_add_sum = #{aveLikeAddSum,jdbcType=DOUBLE},
+      </if>
+      <if test="wci != null">
+        wci = #{wci,jdbcType=DOUBLE},
+      </if>
+      <if test="wciAdd != null">
+        wci_add = #{wciAdd,jdbcType=BIGINT},
+      </if>
+      <if test="rank != null">
+        `rank` = #{rank,jdbcType=BIGINT},
+      </if>
+      <if test="rankAdd != null">
+        rank_add = #{rankAdd,jdbcType=BIGINT},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xfc.netrank0819.domain.ArticlMessageDO">
+    update articlmessage
+    set offical_account = #{officalAccount,jdbcType=VARCHAR},
+      account_name = #{accountName,jdbcType=VARCHAR},
+      articl_sum = #{articlSum,jdbcType=BIGINT},
+      articl_add_sum = #{articlAddSum,jdbcType=BIGINT},
+      more_tenw = #{moreTenw,jdbcType=BIGINT},
+      more_tenw_add = #{moreTenwAdd,jdbcType=BIGINT},
+      read_sum = #{readSum,jdbcType=BIGINT},
+      read_add_sum = #{readAddSum,jdbcType=BIGINT},
+      ave_read = #{aveRead,jdbcType=BIGINT},
+      ave_read_add = #{aveReadAdd,jdbcType=BIGINT},
+      read_now = #{readNow,jdbcType=BIGINT},
+      read_now_add = #{readNowAdd,jdbcType=BIGINT},
+      ave_read_now = #{aveReadNow,jdbcType=BIGINT},
+      ave_read_now_add = #{aveReadNowAdd,jdbcType=BIGINT},
+      replay_sum = #{replaySum,jdbcType=BIGINT},
+      replay_add_sum = #{replayAddSum,jdbcType=BIGINT},
+      headline_read_sum = #{headlineReadSum,jdbcType=BIGINT},
+      headline_read_sum_add = #{headlineReadSumAdd,jdbcType=BIGINT},
+      headline_read_now = #{headlineReadNow,jdbcType=BIGINT},
+      largest_read = #{largestRead,jdbcType=BIGINT},
+      largest_read_now = #{largestReadNow,jdbcType=BIGINT},
+      readed_pro = #{readedPro,jdbcType=VARCHAR},
+      like_sum = #{likeSum,jdbcType=BIGINT},
+      like_add_sum = #{likeAddSum,jdbcType=BIGINT},
+      largest_like_sum = #{largestLikeSum,jdbcType=BIGINT},
+      headline_like_sum = #{headlineLikeSum,jdbcType=BIGINT},
+      ave_like_sum = #{aveLikeSum,jdbcType=BIGINT},
+      ave_like_add_sum = #{aveLikeAddSum,jdbcType=DOUBLE},
+      wci = #{wci,jdbcType=DOUBLE},
+      wci_add = #{wciAdd,jdbcType=BIGINT},
+      `rank` = #{rank,jdbcType=BIGINT},
+      rank_add = #{rankAdd,jdbcType=BIGINT},
+      is_delete = #{isDelete,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
